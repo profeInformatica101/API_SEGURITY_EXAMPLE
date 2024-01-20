@@ -6,10 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dwes.security.entities.Libro;
-import com.dwes.security.entities.Prestamo;
+import com.dwes.security.entities.Reserva;
 import com.dwes.security.entities.Usuario;
 import com.dwes.security.error.exception.LibroNotFoundException;
 import com.dwes.security.repository.LibroRepository;
+import com.dwes.security.repository.ReservaRepository;
 import com.dwes.security.service.LibrosService;
 
 
@@ -21,6 +22,9 @@ public class LibrosServiceImpl implements LibrosService {
 
     @Autowired
     private LibroRepository libroRepository;
+    
+    @Autowired
+    private ReservaRepository reservaRepository;
  
 
     @Override
@@ -50,27 +54,30 @@ public class LibrosServiceImpl implements LibrosService {
         libroRepository.deleteById(id);
     }
 
+	@Override
+	public Page<Libro> listarTodosLosLibros(Pageable pageable) {
+		 return libroRepository.findAll(pageable);
+	}
 
 	@Override
-	public Prestamo prestarLibroAPrestamo(Libro libro, Usuario usuario) {
-		// TODO Auto-generated method stub
+	public Page<Libro> listarLibrosPrestadosPorUsuario(Long usuarioId, Pageable pageable) {
+	    return reservaRepository.findLibrosPrestadosPorUsuarioId(usuarioId, pageable);
+
+	}
+
+	@Override
+	public Reserva reservarLibro(Libro libro, Usuario usuario) {
+		
 		return null;
 	}
 
 	@Override
-	public void devolverLibro(Long prestamoId) {
+	public void devolverLibro(Long reservaId) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public Page<Libro> listarTodosLosLibros(Pageable pageable) {
-        return libroRepository.findAll(pageable);
-	}
 
-	@Override
-	public Page<Libro> listarLibrosPrestadosPorUsuario(Integer usuarioId, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 }

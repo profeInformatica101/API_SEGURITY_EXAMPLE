@@ -22,7 +22,7 @@ public class InitializationData implements CommandLineRunner {
     @Autowired
     private UserRepository usuarioRepository;
     
-    private final boolean borrarLibros = true; // Variable para controlar el borrado de datos
+    private final boolean borrarLibros = false; // Variable para controlar el borrado de datos
     
     @Autowired
     private LibroRepository libroRepository;

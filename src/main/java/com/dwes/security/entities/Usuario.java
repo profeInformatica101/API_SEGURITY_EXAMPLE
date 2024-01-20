@@ -19,7 +19,7 @@ public class Usuario implements UserDetails {
 	  private static final long serialVersionUID = 1L;
 	  	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+	    private Long id;
 	    private String firstName;
 	    private String lastName;
 	    @Column(unique = true)
@@ -97,7 +97,7 @@ public class Usuario implements UserDetails {
 	    public void setRoles(Set<Role> roles) {
 	        this.roles = roles;
 	    }
-		public Integer getId() {
+		public Long getId() {
 			return id;
 		}
 		public String getFirstName() {

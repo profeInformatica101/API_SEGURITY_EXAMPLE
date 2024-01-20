@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.dwes.security.entities.Libro;
-import com.dwes.security.entities.Prestamo;
+import com.dwes.security.entities.Reserva;
 import com.dwes.security.entities.Usuario;
 
 public interface LibrosService {
@@ -21,11 +21,11 @@ public interface LibrosService {
 
     void eliminarLibro(Long id);
 
-    Page<Libro> listarLibrosPrestadosPorUsuario(Integer usuarioId, Pageable pageable);
+    Page<Libro> listarLibrosPrestadosPorUsuario(Long usuarioId, Pageable pageable);
 
-    Prestamo prestarLibroAPrestamo(Libro libro, Usuario usuario);
+    Reserva reservarLibro(Libro libro, Usuario usuario);
 
-    void devolverLibro(Long prestamoId);
+    void devolverLibro(Long reservaId);
 
    
 }
